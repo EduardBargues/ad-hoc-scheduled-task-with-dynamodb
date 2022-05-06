@@ -1,0 +1,19 @@
+name: CD
+on:
+  push:
+    branches: [main]
+jobs:
+  semver-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: ohpensource/generate-version-and-release-notes-gh-action@main
+        id: semver
+        name: semver & changelog
+        with:
+          user-name: "github-actions"
+          user-email: "actions@github.com"
+    outputs:
+      service-version: ${{ steps.semver.outputs.service-version }}
