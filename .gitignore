@@ -1,8 +1,12 @@
 # terraform
-backend.tf
-secrets.sh
+deploy.sh
 .terraform
 .terraform.lock.hcl
+tfplan
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.tfstate.lock.info
+builds
 
 # Logs
 logs

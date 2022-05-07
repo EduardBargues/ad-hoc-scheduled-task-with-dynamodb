@@ -1,0 +1,15 @@
+{
+  "name": "on-task-executed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "pack": "npm-pack-zip"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-pack-zip": "^1.3.0"
+  }
+}
