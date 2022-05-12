@@ -1,0 +1,24 @@
+# SECRETS
+export AWS_DEFAULT_REGION="<your-aws-region>"
+export AWS_ACCESS_KEY_ID="<your-access-key-id>"
+export AWS_SECRET_ACCESS_KEY="<your-secret-access-key>"
+
+# GLOBAL VARIABLES
+service_name="ad-hoc-scheduled-task-with-dynamodb"
+wrk_dir=$(pwd)
+
+set -e
+for function_name in {"schedule-task","execute-task"}; do
+    cd "$wrk_dir/src/functions/$function_name"
+    npm install
+    npm run pack
+    cp "$wrk_dir/src/functions/$function_name/$function_name.zip" "$wrk_dir/terraform/$function_name.zip"
+done
+
+cd "$wrk_dir/terraform"
+    terraform init
+    terraform validate
+    plan="$wrk_dir/terraform/tfplan"
+    terraform plan -out=$plan
+    terraform apply $plan
+cd "$wrk_dir"
